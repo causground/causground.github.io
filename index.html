@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CausGround | Causal Interaction Grounding for Adaptive Embodied Planning</title>
+  <meta name="description" content="CausGround turns interaction experience into reusable action preconditions and effects for adaptive embodied planning, without updating model parameters.">
+  <link rel="canonical" href="https://causground.github.io/">
+  <meta property="og:url" content="https://causground.github.io/">
+  <meta name="theme-color" content="#7960ce">
+  <meta property="og:title" content="CausGround: Causal Interaction Grounding for Adaptive Embodied Planning">
+  <meta property="og:description" content="Learn from interaction. Ground actions in causal knowledge. Adapt without parameter updates.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles-v2.css?v=2">
+  <link rel="stylesheet" href="styles-v3.css?v=4">
+  <link rel="stylesheet" href="typography.css?v=7.1">
+  <script src="site-config.js?v=7.5" defer></script>
+  <script src="app.js?v=6.7" defer></script>
+  <script src="demo-player.js?v=6.4" defer></script>
+  <script src="backward-data.js?v=3.1" defer></script>
+  <script src="backward-core.js?v=4.1" defer></script>
+  <script src="task-graph.js?v=4.1" defer></script>
+  <script src="backward-demo.js?v=5" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="Main navigation">
+      <a class="brand" href="#top">Caus<span class="brand-ground">Ground</span></a>
+      <div class="nav-links"><a href="#video">Video</a><a href="#causal-knowledge">Explore</a><a href="#method">Method</a><a href="#results">Results</a><a href="#real-world">Real World</a><a href="#citation">Citation</a></div>
+      <a class="nav-paper resource-link" data-resource="paper" role="link" aria-disabled="true" title="Paper link coming soon"><img src="assets/arxiv-icon.svg" alt="">Paper</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="title">
+      <h1 id="title"><span class="project-name">Caus<span class="brand-ground">Ground</span></span><span class="paper-title">Causal Interaction Grounding<br>for Adaptive Embodied Planning</span></h1>
+      <div class="authors">
+        <div><span>Yijun Shen<sup>1,2</sup></span><span>Diqi He<sup>2,3</sup></span><span>Jinbang Guo<sup>2</sup></span><span>Wanyue Zhang<sup>2,4,5</sup></span><span>Jiaming Mi<sup>1</sup></span></div>
+        <div><span>Huan Yang<sup>2</sup></span><span>Zhongyuan Wang<sup>2</sup></span><span>Zhiwei Yu<sup>2,*</sup></span><span>Kai Zhang<sup>1,*</sup></span></div>
+      </div>
+      <div class="affiliations">
+        <div class="affiliation-row"><span><sup>1</sup> East China Normal University</span><span><sup>2</sup> Beijing Academy of Artificial Intelligence (BAAI)</span></div>
+        <div class="affiliation-row"><span><sup>3</sup> Northwestern Polytechnical University</span><div class="affiliation-pair"><span><sup>4</sup> School of Artificial Intelligence, University of Chinese Academy of Sciences</span><span><sup>5</sup> Institute of Automation, Chinese Academy of Sciences</span></div></div>
+      </div>
+      <p class="author-notes">* Corresponding authors</p>
+      <div class="actions">
+        <a class="button primary resource-link" data-resource="paper" role="link" aria-disabled="true" title="Paper link coming soon"><img src="assets/arxiv-icon.svg" alt="">Paper</a>
+        <a class="button resource-link" data-resource="github" role="link" aria-disabled="true" title="Code link coming soon"><img src="assets/github-icon.svg" alt="">Code</a>
+        <a class="button" href="#video"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="m10 8 6 4-6 4Z" fill="currentColor"/></svg>Video</a>
+        <a class="button" href="#results"><img src="assets/results-icon.svg" alt="">Results</a>
+      </div>
+    </section>
+
+    <section class="video-section wrap" id="video" aria-label="Project video">
+      <video id="overview-video" controls playsinline preload="none" poster="assets/overview-poster-v07-opening.jpg" aria-label="CausGround project overview, 79.8 seconds"><source src="assets/overview-v08-web.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/overview-v08-web.mp4">Download the overview video.</a></video>
+
+    </section>
+
+    <section class="section backward-section" id="causal-knowledge" aria-labelledby="causal-heading"><div class="wrap backward-wrap">
+      <h2 id="causal-heading">Reason backward through <span class="brand-word">Caus<span class="brand-ground">Ground</span></span>.</h2>
+      <div id="cg-home"><div id="cg-stage-wrap" class="cg-stage-wrap">
+        <div class="cg-taskbar"><span class="cg-domain">RoboCasa</span><div id="cg-examples" class="cg-examples" role="group" aria-label="Four selected RoboCasa cases"></div></div>
+        <p id="cg-task-prompt" class="cg-task-prompt"></p>
+        <div class="cg-goal-row"><span class="cg-goal-heading">Task goals</span><div class="cg-view-tools"><button id="cg-zoom-out" type="button" aria-label="Zoom out">−</button><button id="cg-zoom-in" type="button" aria-label="Zoom in">+</button><button id="cg-expand" type="button">Expand ↗</button></div></div>
+        <div id="cg-goals" class="cg-goals" role="list" aria-label="All goals of this task"></div>
+        <div id="cg-viewport" class="cg-viewport" tabindex="0" role="region" aria-label="Interactive CausGround object, condition, action and effect graph"><div id="cg-sizer" class="cg-sizer"><div id="cg-art" class="cg-art"></div></div></div>
+        <div class="cg-stage-footer"><div class="cg-status"><output id="cg-step-count"></output><p id="cg-stage" role="status" aria-live="polite"></p></div><div id="cg-path" class="cg-path" aria-label="Backward retrieval order"></div></div>
+        <div class="cg-player"><button id="cg-play" type="button">Play retrieval</button><button id="cg-prev" type="button" aria-label="Previous retrieval step">←</button><button id="cg-next" type="button" aria-label="Next retrieval step">→</button><input id="cg-scrub" type="range" min="0" max="9" step="1" value="0" aria-label="Retrieval progress"><button id="cg-reset" type="button" aria-label="Restart retrieval">↻</button></div>
+        <details id="cg-details" class="cg-details"><summary id="cg-detail-label">Conditions &amp; effects</summary><div class="cg-facts"><div><h3>Conditions</h3><ul id="cg-conditions"></ul></div><div><h3>Effects</h3><ul id="cg-effects"></ul></div></div><details class="cg-record"><summary>Source record</summary><p>Retrieval from recorded mechanisms. Initial scene conditions remain to be checked; this animation is not a robot execution.</p><pre id="cg-record"></pre></details></details>
+      </div></div>
+    </div></section>
+
+    <section class="section" id="method" aria-labelledby="method-heading"><div class="wrap wide-wrap">
+      <h2 id="method-heading">How <span class="brand-word">Caus<span class="brand-ground">Ground</span></span> Works</h2>
+      <figure class="paper-figure"><button class="figure-zoom" data-zoom="assets/method.png" data-title="Method Overview" aria-label="Enlarge the CausGround method figure"><img src="assets/method.png" width="4347" height="2058" loading="lazy" alt="CausGround distills trajectories into generic and specific precondition-action-effect knowledge, then retrieves and grounds a causal graph for planning from current observations."></button></figure>
+    </div></section>
+
+    <section class="section" id="benchmarks" aria-labelledby="benchmarks-heading"><div class="wrap wide-wrap">
+      <h2 id="benchmarks-heading">Benchmarks</h2>
+      <figure class="paper-figure"><button class="figure-zoom" data-zoom="assets/benchmarks.png" data-title="Benchmarks" aria-label="Enlarge the benchmarks overview"><img src="assets/benchmarks.png" width="4481" height="1422" loading="lazy" alt="Overview of the three benchmarks: SWITCH covers action selection, recovery, state verification, and verification actions; RoboCasa shows arranging a bread basket; VirtualHome shows putting a carrot into the fridge."></button></figure>
+    </div></section>
+
+    <section class="section band" id="results" aria-labelledby="results-heading"><div class="wrap">
+      <h2 id="results-heading">Experimental Results</h2>
+      <div class="metrics"><article><h3>VirtualHome</h3><p><span>24.9<small>%</small></span><b aria-hidden="true">→</b><strong>53.3<small>%</small></strong></p><span>Average task success</span></article><article><h3>RoboCasa</h3><p><span>43.0<small>%</small></span><b aria-hidden="true">→</b><strong>57.0<small>%</small></strong></p><span>Closed-loop planning success</span></article><article><h3>SWITCH</h3><p><span>25.8<small>%</small></span><b aria-hidden="true">→</b><strong>31.9<small>%</small></strong></p><span>Interaction reasoning accuracy</span></article></div>
+      <div class="result-tabs" role="tablist" aria-label="Research results"><button id="tab-planning" role="tab" aria-selected="true" aria-controls="panel-planning" tabindex="0">Planning Performance</button><button id="tab-generalization" role="tab" aria-selected="false" aria-controls="panel-generalization" tabindex="-1">Across Model Families</button><button id="tab-case" role="tab" aria-selected="false" aria-controls="panel-case" tabindex="-1">Case Study</button></div>
+      <div id="panel-planning" role="tabpanel" aria-labelledby="tab-planning" tabindex="0"><div class="table-scroll"><table><caption>Planning performance (%)</caption><thead><tr><th scope="col">Planner</th><th scope="col">Method</th><th scope="col">VirtualHome<br><small>Success rate</small></th><th scope="col">VirtualHome<br><small>Final progress</small></th><th scope="col">RoboCasa<br><small>One-shot</small></th><th scope="col">RoboCasa<br><small>Replanning</small></th></tr></thead><tbody>
+        <tr><th scope="rowgroup" rowspan="4">Qwen3.5-9B</th><td>Vanilla</td><td>10.7</td><td>23.8</td><td>31.0</td><td>36.7</td></tr><tr><td>SelfReVision</td><td>22.7</td><td>34.1</td><td>26.8</td><td>26.5</td></tr><tr><td>LookPlanGraph</td><td>20.0</td><td>39.7</td><td>19.7</td><td>28.6</td></tr><tr class="ours"><td><span class="brand-word">Caus<span class="brand-ground">Ground</span></span></td><td>44.0</td><td>61.5</td><td>45.1</td><td>46.9</td></tr>
+        <tr class="group-start"><th scope="rowgroup" rowspan="4">Qwen3.5-27B</th><td>Vanilla</td><td>33.3</td><td>46.9</td><td>27.9</td><td>57.8</td></tr><tr><td>SelfReVision</td><td>42.7</td><td>55.0</td><td>18.3</td><td>39.1</td></tr><tr><td>LookPlanGraph</td><td>56.0</td><td>71.6</td><td>24.4</td><td>53.1</td></tr><tr class="ours"><td><span class="brand-word">Caus<span class="brand-ground">Ground</span></span></td><td>62.7</td><td>79.8</td><td>27.9</td><td>75.0</td></tr>
+        <tr class="group-start"><th scope="rowgroup" rowspan="4">Qwen3.5-35B-A3B</th><td>Vanilla</td><td>30.7</td><td>44.4</td><td>21.9</td><td>34.4</td></tr><tr><td>SelfReVision</td><td>37.3</td><td>47.9</td><td>15.1</td><td>4.9</td></tr><tr><td>LookPlanGraph</td><td>33.3</td><td>47.2</td><td>19.2</td><td>23.0</td></tr><tr class="ours"><td><span class="brand-word">Caus<span class="brand-ground">Ground</span></span></td><td>53.3</td><td>72.6</td><td>43.8</td><td>49.2</td></tr>
+      </tbody></table></div><p class="small-note">VirtualHome results are macro-averaged over short, medium, and long tasks.</p></div>
+      <div id="panel-generalization" role="tabpanel" aria-labelledby="tab-generalization" tabindex="0" hidden><div class="generalization-layout"><figure><button class="figure-zoom" data-zoom="assets/generalization.png" data-title="Across Model Families" aria-label="Enlarge the cross-model results"><img src="assets/generalization.png" width="2052" height="1321" loading="lazy" alt="CausGround improves success rate and final progress for Gemma 4 E4B and 12B, InternVL3.5 8B and 38B, and Qwen3.5 9B and 27B."></button></figure><div class="generalization-summary"><p class="big-result">23.3% <span>→</span> <strong>50.7%</strong></p><p>Average VirtualHome task success across six backbones from Gemma 4, InternVL3.5, and Qwen3.5.</p></div></div></div>
+      <div id="panel-case" role="tabpanel" aria-labelledby="tab-case" tabindex="0" hidden><figure class="paper-figure"><button class="figure-zoom" data-zoom="assets/case-study.png" data-title="Case Study" aria-label="Enlarge the case study"><img src="assets/case-study.png" width="4183" height="1705" loading="lazy" alt="Vanilla repeatedly tries to sit while not near the chair. CausGround first walks to the chair, then sits and switches on the computer."></button><figcaption class="caption">Satisfy the missing precondition. Then execute the action.</figcaption></figure></div>
+    </div></section>
+
+    <section class="section" id="real-world" aria-labelledby="real-world-heading"><div class="wrap wide-wrap">
+      <h2 id="real-world-heading">Real-World Demos</h2>
+      <p class="demo-context" id="demo-recording-note">Illustrated causal retrieval with real robot recordings.</p>
+      <div class="demo-tabs" role="tablist" aria-label="Real-world demos">
+        <button id="tab-demo-microwave" type="button" role="tab" aria-selected="true" aria-controls="panel-demo-microwave" tabindex="0"><span aria-hidden="true">01</span> Microwave → plate</button>
+        <button id="tab-demo-banana" type="button" role="tab" aria-selected="false" aria-controls="panel-demo-banana" tabindex="-1"><span aria-hidden="true">02</span> Banana, then bread</button>
+      </div>
+      <div class="real-demos">
+        <figure class="real-demo" id="panel-demo-microwave" role="tabpanel" aria-labelledby="tab-demo-microwave">
+          <figcaption class="demo-heading"><h3 id="demo-microwave-title"><span aria-hidden="true">01</span>From the microwave to the plate</h3><button type="button" data-video-expand="demo-microwave" aria-label="Expand the microwave demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5M3 3l6 6M21 3l-6 6M3 21l6-6M21 21l-6-6"/></svg><span>Expand video</span></button></figcaption>
+          <div class="demo-media">
+            <video id="demo-microwave" controls controlslist="nofullscreen" playsinline preload="none" tabindex="0" poster="assets/demos/microwave-poster-v3.jpg" aria-labelledby="demo-microwave-title" aria-describedby="demo-recording-note"><source src="assets/demos/microwave-web-v6.mp4" type="video/mp4"><a href="assets/demos/microwave-web-v6.mp4">Watch the microwave demo.</a></video>
+            <div class="demo-cover"><img src="assets/demos/microwave-poster-v3.jpg" width="1920" height="1080" alt="" aria-hidden="true"><button class="demo-start" type="button" aria-label="Play the microwave demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play demo</span></button><a class="demo-fallback" href="assets/demos/microwave-web-v6.mp4" target="_blank" rel="noopener" hidden>Open video ↗</a></div>
+            <span class="demo-buffering" role="status" hidden>Loading video…</span>
+          </div>
+        </figure>
+        <figure class="real-demo" id="panel-demo-banana" role="tabpanel" aria-labelledby="tab-demo-banana" hidden>
+          <figcaption class="demo-heading"><h3 id="demo-banana-title"><span aria-hidden="true">02</span>Banana first. Then bread.</h3><button type="button" data-video-expand="demo-banana" aria-label="Expand the banana and bread demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5M3 3l6 6M21 3l-6 6M3 21l6-6M21 21l-6-6"/></svg><span>Expand video</span></button></figcaption>
+          <div class="demo-media">
+            <video id="demo-banana" controls controlslist="nofullscreen" playsinline preload="none" tabindex="0" poster="assets/demos/banana-bread-poster-v4.jpg" aria-labelledby="demo-banana-title" aria-describedby="demo-recording-note"><source src="assets/demos/banana-bread-web-v6.mp4" type="video/mp4"><a href="assets/demos/banana-bread-web-v6.mp4">Watch the banana and bread demo.</a></video>
+            <div class="demo-cover"><img src="assets/demos/banana-bread-poster-v4.jpg" width="1920" height="1080" alt="" aria-hidden="true"><button class="demo-start" type="button" aria-label="Play the banana and bread demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play demo</span></button><a class="demo-fallback" href="assets/demos/banana-bread-web-v6.mp4" target="_blank" rel="noopener" hidden>Open video ↗</a></div>
+            <span class="demo-buffering" role="status" hidden>Loading video…</span>
+          </div>
+        </figure>
+      </div>
+      <p class="sr-only" id="video-status" role="status"></p>
+    </div></section>
+
+    <section class="section wrap citation" id="citation" aria-labelledby="citation-heading"><h2 id="citation-heading">Citation</h2><div class="bibtex"><button id="copy-citation" type="button" hidden>Copy BibTeX</button><pre id="bibtex" aria-label="BibTeX citation"></pre><p id="citation-pending">Citation details will be added with the paper release.</p><span class="sr-only" id="copy-status" role="status"></span></div></section>
+  </main>
+  <footer class="wrap footer"><a class="brand" href="#top">Caus<span class="brand-ground">Ground</span></a><span>Causal knowledge from interaction experience.</span><a href="#top">Back to top ↑</a></footer>
+  <dialog id="cg-dialog" aria-label="Expanded CausGround backward retrieval"></dialog>
+  <dialog id="video-dialog" aria-labelledby="video-dialog-title"><div class="dialog-bar"><h2 id="video-dialog-title">Demo</h2><div class="dialog-actions"><div class="video-zoom" role="group" aria-label="Video zoom"><button type="button" id="video-zoom-out" aria-label="Zoom video out" disabled>−</button><output id="video-zoom-level" aria-live="polite" aria-label="Video zoom level">100%</output><button type="button" id="video-zoom-in" aria-label="Zoom video in">+</button><button type="button" id="video-zoom-fit" aria-label="Fit video to window">Fit</button></div><a id="video-direct-link" target="_blank" rel="noopener">Open video ↗</a><button type="button" id="close-video" aria-label="Close expanded video">Close ×</button></div></div><div id="video-dialog-stage"></div></dialog>
+  <dialog id="figure-dialog" aria-labelledby="figure-title"><div class="dialog-bar"><h2 id="figure-title">Method</h2><button type="button" id="close-figure" aria-label="Close enlarged figure">Close ×</button></div><img id="enlarged-figure" alt=""></dialog>
+</body>
+</html>

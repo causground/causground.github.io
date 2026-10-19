@@ -1,0 +1,44 @@
+/* Keep benchmark controls and layout independent of results and demo tabs. */
+.benchmark-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 760px;
+  margin: 0 auto 18px;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.benchmark-tabs button {
+  padding: 16px 12px;
+  min-height: 62px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 22px;
+  font-weight: 550;
+  line-height: 1.35;
+}
+.benchmark-tabs button:hover { background: #f5f1fc; color: var(--purple-dark); }
+.benchmark-tabs button[aria-selected="true"] { color: var(--purple-dark); border-bottom-color: var(--purple); font-weight: 650; }
+.benchmark-toolbar { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+.benchmark-toolbar button { border: 0; background: transparent; color: var(--purple-dark); font-size: 18px; padding: 6px 0 6px 16px; min-height: 44px; }
+.benchmark-viewport { display: flex; align-items: center; min-height: 594px; overflow: auto; padding: 6px; scrollbar-color: #b7a4df #f6f3fa; }
+.benchmark-figure { display: block; flex: 0 0 auto; width: 100%; border: 0; padding: 0; margin: auto; background: transparent; }
+.benchmark-figure svg { display: block; width: 100%; height: auto; overflow: hidden; }
+#panel-benchmark-switch .benchmark-figure { max-width: 730px; }
+#benchmark-dialog { width: 1680px; overflow: hidden; }
+#benchmark-dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+#benchmark-dialog .dialog-bar { margin-bottom: 18px; }
+.benchmark-dialog-scroll { overflow: auto; min-height: 0; padding: 6px; overscroll-behavior: contain; }
+#benchmark-enlarged { display: block; width: 100%; min-width: 1500px; height: auto; margin: auto; overflow: hidden; }
+#benchmark-dialog[data-benchmark="switch"] #benchmark-enlarged { max-width: 1000px; min-width: 850px; }
+@media (max-width: 740px) {
+  .benchmark-tabs { grid-template-columns: .9fr 1fr 1.25fr; gap: 4px; margin-bottom: 12px; }
+  .benchmark-tabs button { padding: 14px 4px; font-size: 18px; min-height: 56px; }
+  .benchmark-toolbar { margin-bottom: 8px; }
+  .benchmark-viewport { min-height: 0; align-items: flex-start; padding-bottom: 14px; }
+  .benchmark-figure { min-width: 1100px; }
+  #panel-benchmark-switch .benchmark-figure { min-width: 680px; }
+  #benchmark-dialog { max-height: 94dvh; padding: 16px; }
+}
